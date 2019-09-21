@@ -16,10 +16,8 @@ import java.lang.reflect.Method;
  * 同事两行泪。
  */
 public class RemotInvocationHandler implements InvocationHandler {
-
-    private String host;
-    private int port;
-
+    private String host;//server ip
+    private int port;//server port
     public RemotInvocationHandler(String host, int port) {
         this.host = host;
         this.port = port;
@@ -32,7 +30,7 @@ public class RemotInvocationHandler implements InvocationHandler {
         request.setClassName(method.getDeclaringClass().getName());
         request.setMethodName(method.getName());
         request.setParams(args);
-        //发起socket链接服务端，并发送数据
+        //发起链接服务端请求，并发送数据
         RpcNetTransport rpcNetTransport = new RpcNetTransport(host,port);
         Object result = rpcNetTransport.send(request);
 
