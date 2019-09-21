@@ -1,14 +1,14 @@
 package rpc.client.Proxy;
 
 import demo.rpc.request.RpcRequest;
-import rpc.client.RpcNetTransport;
+import rpc.client.Transport.RpcNetTransport;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 
 /**
  * @author yellow
- * @date 2019/9/12 17:32
+ * @date 2019/9/22
  * 温馨提醒:
  * 代码千万行，
  * 注释第一行。
@@ -27,7 +27,6 @@ public class RemotInvocationHandler implements InvocationHandler {
 
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-        System.out.println("begin:"+host+"->"+port);
         //构建需要访问的服务端---类的方法
         RpcRequest request = new RpcRequest();
         request.setClassName(method.getDeclaringClass().getName());

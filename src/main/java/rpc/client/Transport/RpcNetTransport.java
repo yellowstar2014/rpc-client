@@ -1,4 +1,4 @@
-package rpc.client;
+package rpc.client.Transport;
 
 import demo.rpc.request.RpcRequest;
 
@@ -26,7 +26,7 @@ public class RpcNetTransport {
     }
 
     private Socket newSocket() throws Exception{
-        System.out.println("开始构建一个客户端连接");
+        System.out.println("开始构建一个client端");
         Socket socket = new Socket(host,port);
         return  socket;
     }
@@ -46,6 +46,7 @@ public class RpcNetTransport {
             objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
             objectOutputStream.writeObject(request);//给服务端发送数据
             objectOutputStream.flush();
+            System.out.println("向server端（"+host+":"+port+"）发起远程服务请求："+request.toString());
             //得到服务端的返回结果
             objectInputStream = new ObjectInputStream(socket.getInputStream());
             result =objectInputStream.readObject();

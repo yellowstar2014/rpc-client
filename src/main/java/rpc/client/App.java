@@ -11,9 +11,10 @@ public class App
 {
     public static void main( String[] args )
     {
+        System.out.println( "The project is RPC framework" );
         RpcProxyClient rpcProxyClient = new RpcProxyClient();
-        IDemoService demoService = rpcProxyClient.clientProxy(IDemoService.class,"localhost",8081);
+        IDemoService demoService = rpcProxyClient.clientProxy(IDemoService.class,"127.0.0.1",8081);
 
-        System.out.println( "###"+demoService.welcomeFun("yellow"));
+        System.out.println( "远程服务返回结果："+demoService.welcomeFun("yellow"));
     }
 }
